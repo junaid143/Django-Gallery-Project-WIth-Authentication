@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block title %}
+<title>Gallery Page </title>
+{% endblock title %}
+
+
+{% block css %}
+{% endblock css %}
+
+
+{% block body %}
+
+<div class="container my-4">
+
+    <div class="container bg-secondary text-light p-2 text-center rounded-3">
+        <h1 class="display-6">Gallery</h1>
+    </div>
+
+
+    <!-- Gallery View  -->
+
+    <div class="container my-5">
+        <div class="row">
+
+            <div class="col-lg-3 col-sm-12">
+
+                <ul class="list-group">
+
+                    <li class="list-group-item "><a href="{% url 'gallery' %}" class="text-decoration-none">All
+                            Images</a></li>
+                    {% for category in categories %}
+                    <li class="list-group-item "><a href="{% url 'category' category.id %}" class="text-decoration-none">{{category.category}}</a></li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+
+
+            <div class="col-lg-9 col-sm-12">
+
+                <div class="row">
+
+                    {% for data in datas %}
+                    <div class="col-3 mb-2">
+                        <div class="card shadow" style="width: 11rem;">
+                            <img src="{{data.image.url}}" class="card-img-top" alt="No Image" height="150px">
+                            <div class="card-body">
+                                <h5 class="card-title">{{data.title}}</h5>
+                                <h6 class="lead">Uploaded By <span class="">{{data.uploaded_by}}</span></h6>
+                                <!-- <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p> -->
+                                <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock body %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block title %}
+<title>Home Page </title>
+{% endblock title %}
+
+
+{% block css %}
+{% endblock css %}
+
+
+{% block body %}
+
+<div class="container my-3">
+
+    <div class="row mt-5">
+
+        <!-- left section  -->
+        <div class="col-lg-8 col-sm-12 mt-5">
+            <div class="container ">
+                <img src="{% static 'images/image.jpg' %}" alt="No Image" class="rounded-3 shadow">
+            </div>
+
+        </div>
+
+        <!-- right section  -->
+        <div class="col-lg-4 col-sm-12">
+
+            <!-- form div  -->
+            <div class="container p-5 shadow">
+
+                <form action="" method="post" >
+                    {% csrf_token %}
+
+                    {% for fm in forms %}
+                        <div class="mb-3">
+                            {{fm.label_tag}}
+                            {{fm}}
+                            <span>{{fm.errors}}</span>
+                        </div>
+                    {% endfor %}
+
+                    <div class="mb-3 text-center">
+                        <input type="submit" value="Login" class="btn btn-primary">
+                    </div>
+                </form>
+                <div class="container text-center p-3 border-top">
+                    <a href="{% url 'register' %}" class="btn btn-success btn-lg">Register</a>
+                </div>
+            </div>
+            
+        </div>
+
+
+    </div>
+
+
+
+</div>
+{% endblock body %}
